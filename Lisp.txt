@@ -1,0 +1,276 @@
+(defun long(l cmpt)
+                   (cond 
+                    (
+                     (eq l nil)
+                     (cmpt)
+                     )
+                    (
+                     (not (eq l nil)
+                          )
+                     (long (cdr l) (+ cmpt 1))
+                     )
+                    )
+                   )
+
+(defun long(l cmpt)
+                   (cond 
+                    (
+                     (eq l nil)
+                     (cmpt)
+                     )
+                    (
+                    (
+                     (not (eq l nil)
+                          )
+                          )
+                     (long (cdr l) (+ cmpt 1))
+                     )
+                    )
+                   )
+
+(defun revers(l void)
+                   (
+                   cond
+                   (
+                   ?? (length l) 0)
+                   void
+                   )
+                   (
+                   (> (length l) 0)
+                   (revers (cdr l) (cons (car l) void))
+                    )
+                   )
+                   ) 
+
+(defun revers1(l)
+                   (revers l '()))
+
+ (defun concat(l1 l2) 
+                   (let ((lastl) (l))
+                   (setq l (revers1 l1))
+                   (setq lastl l2)
+                   (loop for k from 1 to (length l1) do
+                        (setq lastl (cons (car l) lastl)) (setq l (cdr l))
+                         )
+                   lastl))
+
+(defun somme(l s)
+                   (
+                    cond
+                    (
+                     ?? (length l) 0)
+                     s
+                     )
+                    (
+                     (/= (length l) 0)
+                     (somme (cdr l) (+ s (car l)))
+                     )
+                    )
+                   ) 
+                   
+(defun somme1(l)
+                   (somme l 0))
+
+(defun fact(n)
+                   (
+                    cond 
+                    (
+                     (or ?? n 0) ?? n 1))
+                     1
+                     )
+                    (
+                     (> n 1)
+                     (* n (fact (- n 1)))
+                     )
+                    )
+                   )
+
+(defun substitut(l x y)
+              (
+               let ((nwl))
+                (loop for i from 0 to (length l)
+                      do
+                      (
+                       cond 
+                       (
+                        ?? (car l) x)
+                        (cons y nwl)
+                        )
+                       (
+                        (/= (car l) x)
+                        (cons (car l) nwl)
+                        )
+                       (setq l (cdr l))
+                       )
+                      )
+                )
+              )
+
+
+(defun maxx(l)
+                  (let ((m (nth 0 l)))
+                    (loop for i from 0 to (- (length l) 1)
+                          do
+                          (
+                           cond
+                           ((> (nth i l) m)
+                           (setq m (nth i l)))
+                           )
+                        )   
+                    m    
+                    ))
+
+
+(defun minn(l)
+                   (let ((m (nth 0 l)))
+                     (loop for i from 0 to (- (length l) 1)
+                           do
+                           (
+                            cond(
+                            (< (nth i l) m)
+                            (setq m (nth i l))
+                            ))
+                           )
+                     m))
+
+
+(defun dern(l)
+                   (nth (- (length l) 1) l))
+
+(defun noRedond(l e)
+                   (
+                    let ((nwl))
+                     (loop for i from 0 to (- (length l) 1)
+                           do
+                           (
+                            cond
+                            (
+                             (/= (nth i l) e)
+                             (append l '(nth i l))
+                             )
+                            )
+                           )
+                     nwl
+                     )
+                   )
+
+(defun exist(l e)
+                   (not (eq nil (member e l))))
+EXIST
+
+(defun NoRed(l e)
+               (let((nwl))
+                 (loop for i from 0 to (- (length l) 1)
+                       do
+                       (
+                        cond
+                        (
+                         (/= e (nth i l))
+                         (setq nwl (cons (nth i l) nwl))
+                         )
+                        (
+                         (and ?? e (nth i l)) (not (exist nwl e))) 
+                         (setq nwl (cons (nth i l) nwl))
+                         ) 
+                        )
+                       )
+                 (reverse nwl)
+                 ))
+
+(defun NoRedForAll(l)
+                   (let ((nwl)) (setq nwl l)
+                     (loop for i from 0 to (- (length l) 1)
+                           do
+                           (setq nwl (noRed nwl (nth i l)))
+                           )
+                   nwl))
+(defun supp(l e)
+              (let ((nwl))
+                (loop for i from 0 to (- (length l))
+                      do
+                      (
+                       cond
+                       (/= (nth i l) e)
+                       (setq nwl (cons (nth i l) l))
+                       )
+                      )
+                nwl))
+
+(defun tri(l)
+              (let ((nwl)) 
+              (loop for i from 0 to (- (length l) 1)
+                    do
+                    (setq nwl (cons (minn l) nwl)) 
+                    (setq l (supp l (minn  l)))
+                         )
+              nwl))
+
+(defun Tri1(l)
+                   (revers1 (tri l)))
+TRI1
+
+(defun sme(l1 l2)(let ((nwl))
+              (loop for i from 0 to (- (length l1) 1)
+                    do
+                    (setq nwl (cons (+ (nth i l1) (nth i l2)) nwl))
+                    )
+              (reverse nwl)
+              ))
+SME
+
+
+(defun somme(M1 M2)
+              (let ((nwlM))
+                (loop for i from 0 to (- (length M1) 1)
+                      do
+                      (setq nwlM (cons (sme (nth i M1) (nth i M2)) nwlM))
+                      )
+                (revers1 nwlM)
+))
+SOMME
+
+
+(defun eqq(l1 l2)
+                   (let((nwl) (m1 (length l1)) (m2 (length l2)))
+                     (cond
+                      (
+                       (> m1 m2)
+                       (setq nwl (reverse l2))
+                       (loop for i from 0 to (- m1 m2)
+                             do
+                             (setq nwl (cons 0 nwl))
+                             )
+                     (setq l2 (reverse nwl)  ))
+                      (
+                       (> m2 m1)
+                       (setq nwl (reverse l1))
+                       (loop for i from 0 to (- m2 m1)
+                             do
+                             (setq nwl (cons 0 nwl))
+                             )
+                       (setq l1 (reverse nwl))
+                       )
+                      )
+                     (list l1 l2)))
+
+(defun sommePloy(P1 P2)
+                   (sme (nth 0 (eqq P1 P2)) (nth 1 (eqq P1 P2))))
+SOMMEPLOY
+
+(defun mult(l x)(let((nwl))
+                   (loop for i from 0 to (- (length l) 1)
+                         do
+                         (setq nwl (cons (* (nth i l) x) nwl))
+                         )
+                   (reverse nwl)
+                   ))
+MULT
+
+(defun ProdPoly(P1 P2)
+                   (let ((nwl)(Void)) (setq Void (eqq Void P1)) 
+                     (loop for i from 0 to (- (length P1) 1)
+                           do
+                           (setq Void (sommePoly (mult P2 (nth i P1)) Void))
+                           )
+                     Void))
+PRODPOLY
