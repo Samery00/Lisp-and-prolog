@@ -1,2 +1,2 @@
-# Lisp
-some useful functions in lisp
+# Lisp and prolog
+some useful functions in lisp and prolog for academic interests
